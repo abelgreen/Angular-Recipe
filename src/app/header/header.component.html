@@ -1,0 +1,45 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand " routerLinkActive="active" routerLink="/"
+    [routerLinkActiveOptions]="{exact: true}">SAMFOOD</a>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" routerLinkActive="active" routerLink="/home" 
+          [routerLinkActiveOptions]="{exact: true}">Home </a> <span class="sr-only">(current)</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/subMenu">Recipes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active"  routerLink="/favorate">Favorate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active"  routerLink="/read">Read</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active"  routerLink="/watch">Watch</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/signup">
+          <span class=" glyphicons glyphicons-user"></span> Sign Up</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link glyphicons glyphicons-user" routerLinkActive="active" routerLink="/login">
+            <span class=""></span> Login</a>
+        </li>
+      </ul> 
+        <div>
+          <p>Welcome  {{myFood.user.user_name}} &nbsp;&nbsp;&nbsp;</p>
+        </div>   
+    
+      <form [formGroup]="searchForm" (ngSubmit)="submitForm(searchForm.value)" class="form-inline my-2 my-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Enter part of food Name" [formControl]="searchForm.controls['foodname']">
+            <button class="btn btn-outline-success my-2 my-sm-0"  [disabled]="!searchForm.valid" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+

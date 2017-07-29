@@ -1,0 +1,13 @@
+
+<ngb-tabset *ngIf="myFood.subtypes" type="tabs">
+  <ngb-tab *ngFor="let subType of myFood.subtypes;let i=index;" title="{{subType.sub_type_name}}">
+    <template ngbTabContent>  
+      <div *ngIf="myFood.categories" class="row"> 
+        <div  *ngFor="let cat of myCategory(subType.sub_id);let j=index;" class="col-2">
+         <button class="btn btn-info btn-block" (click)="assignTypeCategory(subType.sub_id,cat.category_id);" type="button"   > {{cat.basic_food_category}}</button>
+        </div>
+      </div>        
+    </template>
+  </ngb-tab> 
+</ngb-tabset>
+<router-outlet> </router-outlet>

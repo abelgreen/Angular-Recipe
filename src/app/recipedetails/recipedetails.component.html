@@ -1,0 +1,89 @@
+
+<div class="row leftMargin20 "><!-- main container-->
+    <div class="col-xs-9 col-sm-3 col-md-3 col-lg-3"> <!-- Image Part (Left)-->
+      <div>
+       <h3>{{food.food_name}} </h3>
+      </div>
+      <div>
+       <img src= {{getImagesNames()}} >
+      </div>
+      <div>
+       <p style="text-align: justify;justify-content:space-around "><strong>Preperation Time:</strong>{{recipe.preperation_time}}</p>
+      </div>
+      <div>
+       <p style="text-align: justify;justify-content:space-around "><strong>Cooking Time:</strong>{{recipe.cooking_time}}</p>       
+      </div>
+      <div>
+       <p style="text-align: justify;justify-content:space-around "><strong>Serving :</strong>{{recipe.serving}}</p>
+      </div>
+       <ngb-rating [(rate)]="recipe.rating" [readonly]="myFood.user.user_id == -1"></ngb-rating>
+       
+    </div><!-- Image Part (Left)-->
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9"> <!-- text Part(Right)-->    
+        <div class="row"> 
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7"><!-- Ingridient(Left Part)-->
+                 <h4>INGRIDIENTS</h4>
+                 <div *ngFor=" let oneIngRec of myFood.recipeIngridients; let i=index;">                 
+                    
+                       <label class="custom-control custom-checkbox">
+                         <input type="checkbox" name="" [checked]="myCheck" id="" value="checkedValue" class="custom-control-input">
+                         <span class="custom-control-indicator"></span>
+                         <span class="custom-control-description"></span>
+                          <p>&nbsp; {{oneIngRec.quantity}}&nbsp; </p><p>&#40;{{oneIngRec.unit}}&#41;</p><p>&nbsp;{{getIngridientName(oneIngRec.ingridient_id)}}</p>                     
+                         
+                       </label>
+                                
+
+                 </div>
+                 <br />
+                 <label class="custom-control custom-checkbox">
+                         <input type="checkbox" name="" (change)="checkAllBoxes()"  [checked]="false"  id="" value="checkedValue" class="custom-control-input">
+                         <span class="custom-control-indicator"></span>
+                         <span class="custom-control-description"></span>
+                          <p>Select All</p>
+                 </label>
+                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                   <button type="button" name="" id="" class="btn btn-info btn-md btn-block">ADD TO MY GROSERY LIST</button>
+                 </div>
+                 
+            </div><!-- Ingridient(Left Part)-->
+            <div class=" mydiv col-xs-12 col-sm-4 col-md-4 col-lg-4"><!-- Categories(Right Part)-->
+              <div class="row ">
+                <button type="button" [disabled]="myFood.user.user_id == -1" name="" id="" (click)="addFoodFav()" class="btn btn-warning btn-md btn-block"><strong>&hearts;</strong>Add to My Favorate List<strong>&hearts;</strong></button>
+              </div>
+              <div *ngIf="myFood.user.user_id == -1">
+                  <div class="divider"></div>
+                  <div >
+                      <p>You Must <a  routerLinkActive="active"  routerLink="/login">Login</a> for Add to Favorate </p>
+                  </div>                 
+              </div>    
+              <div *ngIf="addFavFoodMessage">
+                  <div class="divider"></div>
+                  <div *ngIf="addFavFoodMessage=='Success'">
+                      <p>Your Favorate Food Was Saved</p>
+                  </div>
+                  <div *ngIf="addFavFoodMessage=='Fail'">
+                      <p>Your Favorate Food Exists You Can Modify it From  <a  routerLinkActive="active"  routerLink="/favorate">Favorate</a></p>
+                  </div>
+              </div>            
+               
+              <div class="divider"></div>
+              <h4>CATEGORIES</h4>  
+              <div class="row ">
+                  <div *ngFor="let category of categories;let i= index;" class="col-4 mydiv2">
+                     <h5> {{category.basic_food_category}}</h5>
+                  </div>
+
+              </div>             
+
+            </div><!-- Categories(Right Part)-->
+        </div>       
+
+    </div> <!-- text Part(Right)-->
+        <div class="divider"></div>
+        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 mydiv2 "><!-- Recipe_Description-->
+            <h4>PREPERATION</h4>
+            <p  style="text-align: justify;justify-content:space-around; ">{{recipe.description}}</p>
+        </div><!-- Recipe_Description-->
+
+</div>

@@ -1,0 +1,30 @@
+<form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
+  <div class="form-group row">
+    <label class="col-2" for="email">Email or User Name:</label>
+    <div [ngClass]="{'has-danger':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}" class="col-3">
+      <input type="text" id="email" name="email" class="form-control form-control-danger" placeholder="Enter your email" [formControl]="loginForm.controls['email']"
+      />
+    </div>
+    <label class="col-2" for="pas">Password:</label>
+    <div [ngClass]="{'has-danger':!loginForm.controls['pass'].valid && loginForm.controls['pass'].touched}" class="col-3">
+      <input type="password" name="pass" class="form-control form-control-danger" [formControl]="loginForm.controls['pass']" />
+    </div>
+    <button  type="submit" class="col-2 btn btn-primary" [disabled]="!loginForm.valid" >Submit</button>
+  </div>
+      <div *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class="alert alert-warning col-sm-6 col-md-6 col-lg-6 col-xs-8" role="alert">
+          <strong>Email or User Name Required</strong>
+      </div>
+      <div *ngIf="loginForm.controls['pass'].hasError('required') && loginForm.controls['pass'].touched" class="alert alert-warning col-sm-6 col-md-6 col-lg-6 col-xs-8" role="alert">
+          <strong>Password Required</strong>
+      </div>
+      
+</form>
+<div *ngIf="ErrorMessage">
+      <div  class="alert alert-warning" role="alert">
+          <strong>{{ErrorMessage}}</strong>
+      </div>
+      <div>
+        <p>Forget the Password Then Enter New Password and click Make New password</p>
+      </div>
+     <button  type="button" class="col-2 btn btn-primary" (click)="changePass()"  >Make New password</button> 
+</div>

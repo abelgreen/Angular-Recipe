@@ -1,0 +1,26 @@
+<div *ngIf="!myFood.favFoods">
+  <h3>No Favorate, add Some favorate Or <a routerLink="/login">Login</a> </h3>  
+</div>
+<div *ngIf="isRecReady && isFoodReady && isFavReady">
+  <div class="row">
+    <div class="col-3"><h4>Food Name</h4></div>
+    <div class="col-2"><h4>Avrage Rating</h4></div>
+    <div class="col-3"><h4>My Rating</h4></div>
+    <div class="col-2"><h4>EDIT</h4></div>
+    <div class="col-2"><h4>DELETE</h4></div>
+  </div>
+  <div *ngFor="let food of myFood.favFoods;" class="row">
+    <div class="col-3">{{getFoodName(food.recipe_id)}}</div>
+    <div class="col-2">{{getAvrageRating(food.recipe_id)}}</div>
+    <div class="col-3">      
+      <ngb-rating [(rate)]="food.rating" [readonly]="onlyRead" (rateChange) = "doRateEdit(food.recipe_id,food.rating)"></ngb-rating>
+    </div>     
+    <div class="col-2"><button class="btn btn-info btn-block" (click)="toggleEdit();">Edit</button></div>
+    <div class="col-2"><button class="btn btn-warning btn-block" (click)="deleteFromClient(food.recipe_id)" >Remove</button></div>
+  </div>
+  <div class="row">
+    <div class="col-2"><button class="btn btn-info btn-block" (click)="saveChanges();">Save</button></div>
+    <div class="col-2"><button class="btn btn-info btn-block" (click)="cancelChanges();">Cancel</button></div>
+  </div>
+
+</div>

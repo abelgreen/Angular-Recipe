@@ -1,0 +1,14 @@
+
+<div class="row">
+  <div class="col-3"><h4>Advanced Search</h4></div>
+  <div class="col-4"><input type="text" placeholder="Enter Part of Food Name"></div>
+  <div class="col-2">
+    <select name="" id="">
+      <option value='0'>
+        Select SubType
+      </option>
+      <option *ngFor="let oneType of myFood.subtypes;" value="oneType.sub_id">{{oneType.sub_type_name}}</option>
+    </select>
+  </div>
+</div>
+<router-outlet></router-outlet>

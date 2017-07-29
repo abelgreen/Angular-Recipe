@@ -1,0 +1,21 @@
+<!-- Food Name-->
+<div *ngIf="myFood.foods" class="row container">
+  <!--food Image  -->  
+  <div *ngFor="let oneFood of myFood.foods;let i=index;" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">   
+    <div>
+      <img src= {{getImagesNames(oneFood.food_img_id)}} >
+    </div>     
+    <div>
+     <h3> {{oneFood.food_name}}</h3>
+    </div>
+    <div class="clamp3line">
+     <p  style="text-align: justify;justify-content:space-around; "> {{getRecepie(oneFood.recipe_id).description}}</p>
+    </div>
+    <div>
+     <p style="text-align: justify;justify-content:space-around "><strong>Preperation Time:</strong> {{getRecepie(oneFood.recipe_id).preperation_time}}</p>
+    </div>
+    <div>
+      <a role="button" (click)="goFoodDetail(oneFood.food_id)"><strong>Read More...</strong></a>
+    </div>
+  </div>
+</div>

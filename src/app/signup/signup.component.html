@@ -1,0 +1,61 @@
+<!--signup info from user-->
+<div>
+  <form  [formGroup]="signupForm" (ngSubmit)="submitForm(signupForm.value)">
+    <div class="form-group row">
+      <!-- user_name -->
+      <label for="user_name" class="col-sm-2 col-md-2 col-lg-2 col-xs-4 col-form-label">User_Name<span style="float: right">:</span></label>
+      <div [ngClass]="{'has-danger':!signupForm.controls['user_name'].valid && signupForm.controls['user_name'].touched}" class="col-sm-4 col-md-4 col-lg-4 col-xs-8">
+        <input  class="form-control form-control-danger" type="text" placeholder="Enter Your Name" name="user_name" id="user_name" [formControl]="signupForm.controls['user_name']">
+      </div> 
+      <div *ngIf="signupForm.controls['user_name'].hasError('required') && signupForm.controls['user_name'].touched" class="alert alert-warning col-sm-6 col-md-6 col-lg-6 col-xs-8" role="alert">
+          <strong>User Name Required</strong>
+      </div>
+    </div>  
+   
+    <div class="form-group row">     
+      <!-- Email -->
+      <label for="email-input" class="col-sm-2 col-md-2 col-lg-2 col-xs-4 col-form-label">Email<span style="float: right">:</span></label>
+      <div [ngClass]="{'has-danger':!signupForm.controls['email'].valid && signupForm.controls['email'].touched}" class="col-sm-4 col-md-4 col-lg-4 col-xs-8">
+        <input class="form-control form-control-danger" type="email" placeholder="love@example.com" id="email-input" name="email" [formControl]="signupForm.controls['email']">
+      </div>
+      <div *ngIf="signupForm.controls['email'].hasError('required') && signupForm.controls['email'].touched" class="alert alert-warning col-sm-6 col-md-6 col-lg-6 col-xs-8" role="alert">
+          <strong>Email Required</strong>
+      </div>
+       <div *ngIf="!signupForm.controls['email'].hasError('required') && signupForm.controls['email'].hasError('email') && signupForm.controls['email'].touched" class="alert alert-warning col-sm-6 col-md-6 col-lg-6 col-xs-8" role="alert">
+          <strong>Email Formt Not correct</strong>
+      </div>
+    </div>
+
+    <div class="form-group row">  
+      <!--user Pass -->
+      <label for="userPass" class="col-sm-2 col-md-2 col-lg-2 col-xs-4 col-form-label">Password<span style="float: right">:</span></label>
+      <div [ngClass]="{'has-danger':!signupForm.controls['pass'].valid && signupForm.controls['pass'].touched}" class="col-sm-4 col-md-4 col-lg-4 col-xs-8">
+        <input class="form-control form-control-danger" type="text" placeholder="Enter Your password" name="pass" id="userPass" [formControl]="signupForm.controls['pass']">
+      </div> 
+      <div *ngIf="signupForm.controls['pass'].hasError('required') && signupForm.controls['pass'].touched" class="alert alert-warning col-sm-6 col-md-6 col-lg-6 col-xs-8" role="alert">
+          <strong>Password Required</strong>
+      </div>
+      <div *ngIf="!signupForm.controls['pass'].hasError('required') && signupForm.controls['pass'].hasError('minlength') && signupForm.controls['pass'].touched" class="alert alert-warning col-sm-6 col-md-6 col-lg-6 col-xs-8" role="alert">
+          <strong>Minumum Password Length is 3</strong>
+      </div>
+      <div *ngIf="!signupForm.controls['pass'].hasError('required') && signupForm.controls['pass'].hasError('maxlength') && signupForm.controls['pass'].touched" class="alert alert-warning col-sm-6 col-md-6 col-lg-6 col-xs-8" role="alert">
+          <strong>Maximum Password Length is 8</strong>
+      </div>      
+    </div>  
+       
+    
+    <div class="row">
+       <div class=" col-sm-2 col-md-2 col-lg-2 col-xs-4">
+        <button type="reset" class="btn btn-block btn-primary btn-info">Reset</button>        
+      </div>
+      <div class="offset-2 col-sm-2 col-md-2 col-lg-2 col-xs-4">
+        <button type="submit" class="btn btn-block btn-primary btn-info" [disabled]="!signupForm.valid">Submit</button>
+      </div>
+     
+    </div>
+
+  </form>
+    <div *ngIf="ErrorMsg" class="alert alert-warning" role="alert">
+       <strong>{{ErrorMsg}}</strong>
+    </div>
+</div>
